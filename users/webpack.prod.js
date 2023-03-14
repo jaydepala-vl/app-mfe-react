@@ -5,7 +5,7 @@ const deps = require("./package.json").dependencies;
 module.exports = {
 	mode: "production",
   output: {
-    publicPath: "http://app-mfe-react.s3-website-us-east-1.amazonaws.com/users/",
+    publicPath: "https://app-mfe-react.s3.amazonaws.com/users/",
   },
 
   resolve: {
@@ -45,10 +45,10 @@ module.exports = {
       name: "users",
       filename: "remoteEntry.js",
       remotes: {
-        'home': 'home@http://app-mfe-react.s3-website-us-east-1.amazonaws.com/home/remoteEntry.js',
-        'settings': 'settings@http://app-mfe-react.s3-website-us-east-1.amazonaws.com/settings/remoteEntry.js',
-        'users': 'users@http://app-mfe-react.s3-website-us-east-1.amazonaws.com/users/remoteEntry.js',
-        'data': 'data@http://app-mfe-react.s3-website-us-east-1.amazonaws.com/data/remoteEntry.js'
+        'home': 'home@https://app-mfe-react.s3.amazonaws.com/home/remoteEntry.js',
+        'settings': 'settings@https://app-mfe-react.s3.amazonaws.com/settings/remoteEntry.js',
+        'users': 'users@https://app-mfe-react.s3.amazonaws.com/users/remoteEntry.js',
+        'data': 'data@https://app-mfe-react.s3.amazonaws.com/data/remoteEntry.js'
       },
       exposes: {
         './UsersList': './src/UsersList/UsersList.tsx',
