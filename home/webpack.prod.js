@@ -6,6 +6,7 @@ const path = require('path');
 
 const deps = require("./package.json").dependencies;
 module.exports = {
+	mode: "production",
   output: {
     publicPath: "http://app-mfe-react.s3-website-us-east-1.amazonaws.com/home/"
   },
