@@ -21,6 +21,7 @@ const MainLayout = () => {
             <NavbarComponent />
             <Routes>
                 <Route exact path="/" element={<React.Suspense fallback={<div>Loading...</div>}><SettingsList /></React.Suspense>} />
+                <Route path="/index.html" element={<React.Suspense fallback={<div>Loading...</div>}><UsersList /></React.Suspense>} />
                 <Route path="/settings" element={<React.Suspense fallback={<div>Loading...</div>}><SettingsList /></React.Suspense>} />
                 <Route path="/users" element={<React.Suspense fallback={<div>Loading...</div>}><UsersList /></React.Suspense>} />
                 <Route path="/users/:userid" element={<React.Suspense fallback={<div>Loading...</div>}><UserProfile /></React.Suspense>} />
