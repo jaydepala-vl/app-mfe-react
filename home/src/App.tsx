@@ -6,6 +6,9 @@ import { Global } from '@emotion/react';
 // Main Layout
 import MainLayout from "./MainLayout";
 
+// i18n
+import './i18n';
+
 import "./index.css";
 
 const globalStyles = (
@@ -19,14 +22,16 @@ const globalStyles = (
 	/>
 );
 
-const App = () => (
-	<React.StrictMode>
-		<FusionThemeProvider>
-			{globalStyles}
-			<MainLayout />
-		</FusionThemeProvider>
-	</React.StrictMode>
-);
+const App = () => {
+	return (
+		<React.StrictMode>
+			<FusionThemeProvider>
+				{globalStyles}
+				<MainLayout />
+			</FusionThemeProvider>
+		</React.StrictMode>
+	);
+};
 
 // let container: any = null;
 

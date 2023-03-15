@@ -11,9 +11,19 @@ import { currentTheme, getCurrentTheme } from './Settings.service';
 import { token, getAppToken, defaultToken, clearToken } from './Settings.service';
 // import useLongPress from 'home/useLongPress';
 
+// i18n
+import { useTranslation } from 'react-i18next';
+import i18n from 'home/i18n';
+
+// css
+import './Settings.css';
+
 const SettingsList = () => {
 
+    const { t } = useTranslation();
 	const [tokenToast, setTokenToast] = useState(false);
+	const [sync, setSync] = useState(false);
+	const [language, setLanguage] = useState('en');
 	const [viewToken, setViewToken] = useState(false);
 	const appTheme = getCurrentTheme();
 	const appToken = getAppToken();
@@ -33,6 +43,18 @@ const SettingsList = () => {
 		setTokenToast(true);
 	};
 
+    const changeLanguage = (lang: string) => {
+		setLanguage(lang);
+        i18n.changeLanguage(lang);
+    };
+
+	const startSync = () => {
+		setSync(true);
+		setTimeout(() => {
+			setSync(false);
+		}, 3000);
+	};
+
 	return (
 		<>
 			<Grid columns={[1, 2]} sx={{ display: 'flex' }}>
@@ -41,7 +63,7 @@ const SettingsList = () => {
 				</Box>
 				<Box p={2}>
 					<h1>
-						Settings
+						{t('settings')}
 					</h1>
 				</Box>
 			</Grid>
@@ -51,14 +73,14 @@ const SettingsList = () => {
 						<Grid columns={[1, 1, 1, 2]} gap={2}>
 							<Box>
 								<Grid columns={[1]} sx={{ mb: 2 }}>
-									<h4>Theme</h4>
+									<h4>{ t('theme') }</h4>
 								</Grid>
 								<Grid columns={[1]} sx={{ mb: 2 }}>
-									Switch to dark mode
+									{ t('themeText') }
 								</Grid>
 							</Box>
 							<Box pt={5} sx={{ justifyContent: 'flex-end', display: 'grid' }}>
-								<Switch label="Dark Mode" onChange={changeTheme} checked={appTheme === 'dark'} />
+								<Switch label={t('darkMode')} onChange={changeTheme} checked={appTheme === 'dark'} />
 							</Box>
 						</Grid>
 					</MenuItem>
@@ -66,17 +88,17 @@ const SettingsList = () => {
 						<Grid columns={[1, 1, 1, 2]} gap={2}>
 							<Box>
 								<Grid columns={[1]} sx={{ mb: 2 }}>
-									<h4>Sync</h4>
+									<h4>{ t('sync') }</h4>
 								</Grid>
 								<Grid columns={[1]} sx={{ mb: 2 }}>
 									<p>
-										Last sync done on 10<sup>th</sup> Feb, 2023
+										{ t('syncText') }
 									</p>
 								</Grid>
 							</Box>
 							<Box pt={5} sx={{ justifyContent: 'flex-end', display: 'grid' }}>
-								<Button iconEnd={<IconSync />}>
-									Start Sync
+								<Button iconEnd={<IconSync className={ sync ? 'rotating' : 'stop' } />} onClick={startSync}>
+									{ t('startSync') }
 								</Button>
 							</Box>
 						</Grid>
@@ -85,19 +107,21 @@ const SettingsList = () => {
 						<Grid columns={[1, 1, 1, 2]} gap={2}>
 							<Box>
 								<Grid columns={[1]} sx={{ mb: 2 }}>
-									<h4>Select Language</h4>
+									<h4>{ t('lang') }</h4>
 								</Grid>
 								<Grid columns={[1]} sx={{ mb: 2 }}>
 									<p>
-										View the app in your preferred language
+										{ t('langText') }
 									</p>
 								</Grid>
 							</Box>
 							<Box pt={5} sx={{ justifyContent: 'flex-end', display: 'grid' }}>
 								<TextField
 									options={options}
-									defaultValue="Select a language"
+									defaultValue={ t('selectLanguage') }
 									select
+									value={language}
+									onSelectChange={changeLanguage}
 								/>
 							</Box>
 						</Grid>
@@ -106,16 +130,16 @@ const SettingsList = () => {
 						<Grid columns={[1, 1, 1, 2]} gap={2}>
 							<Box>
 								<Grid columns={[1]} sx={{ mb: 2 }}>
-									<h4>Generate Token</h4>
+									<h4>{ t('token') }</h4>
 								</Grid>
 								<Grid columns={[1]} sx={{ mb: 2 }}>
 									<p>
-										Generate a token to be used in other MFE
+										{ t('tokenText') }
 									</p>
 									<Grid columns={[1, 1]} gap={2}>
 									<Box>
-										<Button variant="secondary" sx={{ width: '130px' }} onClick={() => setViewToken(!viewToken)} iconEnd={viewToken ? <IconBellOff /> : <IconBell />}>
-											View Token
+										<Button variant="secondary" onClick={() => setViewToken(!viewToken)} iconEnd={viewToken ? <IconBellOff /> : <IconBell />}>
+											{ t('viewToken') }
 										</Button>
 									</Box>
 									<Box>
@@ -135,7 +159,7 @@ const SettingsList = () => {
 							</Box>
 							<Box pt={5} sx={{ justifyContent: 'flex-end', display: 'grid' }}>
 								<Button iconEnd={<IconKey />} onClick={() => generateToken()}>
-									Generate Token
+									{ t('token') }
 								</Button>
 							</Box>
 						</Grid>
@@ -150,7 +174,7 @@ const SettingsList = () => {
 							</Box>
 							<Box pt={5} sx={{ justifyContent: 'flex-end', display: 'grid' }}>
 								<Button variant="primary">
-									Save Changes
+									{ t('saveChanges') }
 								</Button>
 							</Box>
 						</Grid>

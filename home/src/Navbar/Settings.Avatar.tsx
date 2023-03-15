@@ -9,11 +9,20 @@ import { Flex, Box, Button, IconRichAvatar, ClickAwayListener, Popover, Divider,
 // Fusion Icons
 import { IconBriefcase, IconSettings, IconLogOut } from 'fusion';
 
+// i18n
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
+
 const SettingsAvatar = () => {
 
+    const { t } = useTranslation();
     const [buttonEl, setButtonEl] = React.useState<HTMLButtonElement | null>(null);
     const [signOut, setSignOut] = React.useState(false);
     const navigate = useNavigate();
+
+    const changeLanguage = (lang: string) => {
+        i18n.changeLanguage(lang);
+    };
     
     return (
         <ClickAwayListener
@@ -35,16 +44,16 @@ const SettingsAvatar = () => {
                 <Popover placement="right" open={!!buttonEl} sx={{ mt: 4 }} anchorEl={buttonEl}>
                     <MenuList sx={{ width: 200, boxShadow: theme.shadows.depth5 }}>
                         <MenuItem>
-                            <Button disabled>
+                            <Button onClick={() => changeLanguage('fr')}>
                                 <Flex sx={{ justifyContent: 'space-between', width: '100%' }}>
-                                    <Text>My Account</Text>
+                                    <Text>{t('myAccount')}</Text>
                                     <IconBriefcase size="small" />
                                 </Flex>
                             </Button>
                         </MenuItem>
                         <MenuItem onClick={() => navigate('settings')}>
                             <Flex sx={{ justifyContent: 'space-between' }}>
-                                <Text>Settings</Text>
+                                <Text>{t('settings')}</Text>
                                 <IconSettings size="small" />
                             </Flex>
                         </MenuItem>
@@ -59,7 +68,7 @@ const SettingsAvatar = () => {
                         <Divider />
                         <MenuItem onClick={() => setSignOut(true)}>
                             <Flex sx={{ justifyContent: 'space-between' }}>
-                                <Text>Sign Out</Text>
+                                <Text>{t('signOut')}</Text>
                                 <IconLogOut size="small" />
                             </Flex>
                         </MenuItem>

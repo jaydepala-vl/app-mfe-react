@@ -1,0 +1,25 @@
+{
+    "title": "Welcome to react using react-i18next",
+    "description": {
+        "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
+        "part2": "Switch language between english and german using buttons above."
+    },
+    "users": "Users",
+    "data": "Data",
+    "myAccount": "My Account",
+    "settings": "Settings",
+    "signOut": "Sign Out",
+    "theme": "Theme",
+    "themeText": "Switch to dark mode",
+    "darkMode": "Dark Mode",
+    "sync": "Sync",
+    "syncText": "Last sync done on 10th Feb, 2023",
+    "startSync": "Start Sync",
+    "lang": "Select Language",
+    "langText": "View the app in your preferred language",
+    "selectLanguage": "Select a Language",
+    "token": "Generate Token",
+    "tokenText": "Generate a token to be used in other MFE",
+    "viewToken": "View Token",
+    "saveChanges": "Save Changes"
+}

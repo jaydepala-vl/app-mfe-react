@@ -58,7 +58,8 @@ module.exports = {
       exposes: {
         './Navbar': './src/Navbar/Navbar.tsx',
         './useLongPress': './src/Utils/useLongPress.tsx',
-        './ApiService': './src/Utils/Api.Service.tsx'
+        './ApiService': './src/Utils/Api.Service.tsx',
+        './i18n': './src/i18n.tsx'
       },
       shared: {
         ...deps,

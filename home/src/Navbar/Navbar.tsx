@@ -12,8 +12,12 @@ import SettingsAvatar from './Settings.Avatar';
 // Services
 import { currentTheme } from 'settings/SettingsService';
 
+// i18n
+import { useTranslation } from 'react-i18next';
+
 const NavbarComponent = () => {
 
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [appTheme, setAppTheme] = useState(currentTheme.value);
     const location = useLocation();
@@ -54,7 +58,7 @@ const NavbarComponent = () => {
                     value={setTabValue()}
                 >
                     <Tab
-                        label="Users"
+                        label={t('users')}
                         onClick={() => navigate('/users')}
                         value={0}
                         sx={{
@@ -62,7 +66,7 @@ const NavbarComponent = () => {
                         }}
                     />
                     <Tab
-                        label="Data"
+                        label={t('data')}
                         onClick={() => navigate('/data')}
                         value={1}
                         sx={{
